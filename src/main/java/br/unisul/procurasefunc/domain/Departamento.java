@@ -1,6 +1,8 @@
 package br.unisul.procurasefunc.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -8,6 +10,9 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 public class Departamento implements Serializable {
@@ -21,10 +26,24 @@ public class Departamento implements Serializable {
 	private String nomeger; // nome do gerente
 	
 	
+	@JsonIgnore
+	@OneToMany(mappedBy="departamento")
+	private List<Vgtrabalho> vagas = new ArrayList<>();
+	
 	@ManyToOne
 	@JoinColumn(name = "empresa_id")
 	private Empresa empresa;
 	
+	
+	
+	public List<Vgtrabalho> getVagas() {
+		return vagas;
+	}
+
+	public void setVagas(List<Vgtrabalho> vagas) {
+		this.vagas = vagas;
+	}
+
 	public Departamento() {
 		
 	}

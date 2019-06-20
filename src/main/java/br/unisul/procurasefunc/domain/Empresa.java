@@ -28,6 +28,26 @@ public class Empresa implements Serializable {
 	@JsonIgnore
 	@OneToMany(mappedBy="empresa")
 	private List<Departamento> pedidos = new ArrayList<>();
+	
+	@JsonIgnore
+	@OneToMany(mappedBy="empresa")
+	private List<Vgtrabalho> vagas = new ArrayList<>();
+
+	public List<Departamento> getPedidos() {
+		return pedidos;
+	}
+
+	public void setPedidos(List<Departamento> pedidos) {
+		this.pedidos = pedidos;
+	}
+
+	public List<Vgtrabalho> getVagas() {
+		return vagas;
+	}
+
+	public void setVagas(List<Vgtrabalho> vagas) {
+		this.vagas = vagas;
+	}
 
 	public Empresa (Integer id, String nome, String uf, String telefone, String cidade) {
 		super();

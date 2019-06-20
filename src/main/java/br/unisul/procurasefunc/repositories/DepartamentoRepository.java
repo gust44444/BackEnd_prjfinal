@@ -14,7 +14,7 @@ import br.unisul.procurasefunc.domain.Departamento;
 public interface DepartamentoRepository extends JpaRepository<Departamento, Integer> {
 	
 	@Transactional(readOnly=true)
-	@Query("SELECT obj FROM Departamento obj WHERE obj.empresa.id = :empresaId ORDER BY obj.nome")
+	@Query("SELECT obj FROM Departamento obj WHERE obj.empresa.id = :empresaId ORDER BY obj.id")
 	public List<Departamento> findDepartamentos(@Param("empresaId") Integer empresa_id);
 
 }

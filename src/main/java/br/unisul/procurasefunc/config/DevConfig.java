@@ -12,7 +12,7 @@ import br.unisul.procurasefunc.services.DbService;
 
 @Configuration
 public class DevConfig {
-	
+	/*
 	@Autowired
 	private DbService dbService;
 	
@@ -27,5 +27,6 @@ public class DevConfig {
 		dbService.inicializaBancoDeDados();
 		return true;
 	}
+	*/
 
 }

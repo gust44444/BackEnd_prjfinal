@@ -17,12 +17,13 @@ public class DepartamentoResource {
 	@Autowired
 	private DepartamentoService service;
 	
-		@RequestMapping(method=RequestMethod.POST)
-		public ResponseEntity<Void>insert(@RequestBody Departamento obj){
-			obj = service.insert(obj);
-			URI uri = ServletUriComponentsBuilder.fromCurrentRequest().
-					path("/{id}").buildAndExpand(obj.getId()).toUri();
-			return ResponseEntity.created(uri).build();
+	//INSERIR
+	@RequestMapping(method=RequestMethod.POST)
+	public ResponseEntity<Void>insert(@RequestBody Departamento obj){
+		obj = service.insert(obj);
+		URI uri = ServletUriComponentsBuilder.fromCurrentRequest().
+				path("/{id}").buildAndExpand(obj.getId()).toUri();
+		return ResponseEntity.created(uri).build();
 		}
 
 }
