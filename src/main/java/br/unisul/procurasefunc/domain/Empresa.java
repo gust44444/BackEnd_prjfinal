@@ -27,18 +27,18 @@ public class Empresa implements Serializable {
 
 	@JsonIgnore
 	@OneToMany(mappedBy="empresa")
-	private List<Departamento> pedidos = new ArrayList<>();
+	private List<Departamento> departamentos = new ArrayList<>();
 	
 	@JsonIgnore
 	@OneToMany(mappedBy="empresa")
 	private List<Vgtrabalho> vagas = new ArrayList<>();
 
-	public List<Departamento> getPedidos() {
-		return pedidos;
+	public List<Departamento> getDepartamentos() {
+		return departamentos;
 	}
 
-	public void setPedidos(List<Departamento> pedidos) {
-		this.pedidos = pedidos;
+	public void setDepartamentos(List<Departamento> departamentos) {
+		this.departamentos = departamentos;
 	}
 
 	public List<Vgtrabalho> getVagas() {
@@ -47,6 +47,10 @@ public class Empresa implements Serializable {
 
 	public void setVagas(List<Vgtrabalho> vagas) {
 		this.vagas = vagas;
+	}
+	
+	public Empresa() {
+		
 	}
 
 	public Empresa (Integer id, String nome, String uf, String telefone, String cidade) {

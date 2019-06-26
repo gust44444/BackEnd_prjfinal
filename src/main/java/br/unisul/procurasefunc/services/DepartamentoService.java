@@ -30,10 +30,27 @@ public class DepartamentoService {
 		return obj;
 	}
 	
-	//BUSCAR POR ID
-	public Departamento find (Integer id) {
-		Optional<Departamento> obj = rep.findById(id);
-		return obj.orElse(null);
-	}
+		//BUSCAR POR ID
+		public Departamento find (Integer id) {
+			Optional<Departamento> obj = rep.findById(id);
+			return obj.orElse(null);
+		}
+	
+	   //ATUALIZAR
+		public Departamento update (Departamento obj) {
+			find(obj.getId());
+			return rep.save(obj);
+		}
+
+		//DELETAR
+		public void delete (Integer id) {
+			find(id);
+			rep.deleteById(id);
+		}
+
+		//LISTAR TODAS
+		public List<Departamento> findAll(){
+			return rep.findAllByOrderByNomedep();
+		}
 
 }

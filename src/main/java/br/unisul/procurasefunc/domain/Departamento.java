@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+
 @Entity
 public class Departamento implements Serializable {
 
@@ -26,15 +27,14 @@ public class Departamento implements Serializable {
 	private String nomeger; // nome do gerente
 	
 	
-	@JsonIgnore
-	@OneToMany(mappedBy="departamento")
-	private List<Vgtrabalho> vagas = new ArrayList<>();
-	
 	@ManyToOne
 	@JoinColumn(name = "empresa_id")
 	private Empresa empresa;
 	
-	
+	@JsonIgnore
+	@OneToMany(mappedBy="departamento")
+	private List<Vgtrabalho> vagas = new ArrayList<>();
+		
 	
 	public List<Vgtrabalho> getVagas() {
 		return vagas;
@@ -46,6 +46,14 @@ public class Departamento implements Serializable {
 
 	public Departamento() {
 		
+	}
+	
+	public Departamento(Integer id, String nomedep, String nomeger,Empresa empresa) {
+		super();
+		this.id = id;
+		this.nomedep = nomedep;
+		this.nomeger = nomeger;
+		this.empresa = empresa;
 	}
 
 	public Integer getId() {
