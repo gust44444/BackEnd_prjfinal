@@ -52,5 +52,11 @@ public class DepartamentoService {
 		public List<Departamento> findAll(){
 			return rep.findAllByOrderByNomedep();
 		}
+		
+		//BUSCAR POR NOME	
+		public List<Departamento> findByName(String nome){
+			List<Departamento> list = rep.findLikeNome(nome);
+			return list;
+		}
 
 }

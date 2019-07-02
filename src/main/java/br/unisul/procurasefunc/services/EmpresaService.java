@@ -43,5 +43,11 @@ public class EmpresaService {
 		public List<Empresa> findAll(){
 			return rep.findAllByOrderByNome();
 		}
+		
+		//BUSCAR POR NOME	
+		public List<Empresa> findByName(String nome){
+			List<Empresa> list = rep.findLikeNome(nome);
+			return list;
+		}
 
 }

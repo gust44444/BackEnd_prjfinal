@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
@@ -17,6 +18,7 @@ import br.unisul.procurasefunc.domain.Departamento;
 import br.unisul.procurasefunc.domain.Empresa;
 import br.unisul.procurasefunc.dtos.DepartamentoDTO;
 import br.unisul.procurasefunc.dtos.EmpresaDTO;
+import br.unisul.procurasefunc.resources.utils.URL;
 import br.unisul.procurasefunc.services.DepartamentoService;
 import br.unisul.procurasefunc.services.EmpresaService;
 
@@ -77,6 +79,13 @@ public class EmpresaResource {
 		List<Departamento> list = departamentoService.findByEmpresa(empresaId);
 		List<DepartamentoDTO> listDto = list.stream().map(obj -> new DepartamentoDTO(obj)).collect(Collectors.toList());  
 		return ResponseEntity.ok().body(listDto);
+	}
+	
+	//BUSCAR POR NOME
+	@RequestMapping(value="/filtro",method=RequestMethod.GET)
+	public ResponseEntity<List<Empresa>> find(@RequestParam(value="nome", defaultValue="")String nome){
+	List <Empresa> list = service.findByName(URL.decodeParam(nome));
+	return ResponseEntity.ok().body(list);
 	}
 
 
