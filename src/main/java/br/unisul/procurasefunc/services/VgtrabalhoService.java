@@ -22,9 +22,11 @@ public class VgtrabalhoService {
 	@Autowired
 	private DepartamentoService departamentoService;
 
-	public List<Vgtrabalho> findByEmpresa(Integer empresaId) {
-		return rep.findVgtrabalhoEmpresas(empresaId);
+	/*
+	public List<Vgtrabalho> findByEmpresa() {
+		return rep.findVgtrabalhoEmpresas();
 	}
+	*/
 	
 	public List<Vgtrabalho> findByDepatamento(Integer departamentoId) {
 		return rep.findVgtrabalhoDepartametos(departamentoId);

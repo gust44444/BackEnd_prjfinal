@@ -50,13 +50,22 @@ public class VgtrabalhoResource {
 			return ResponseEntity.noContent().build();
 		}
 		
-		//EXCLUIR
+		//EXCLUIR		
 		@RequestMapping(value="/{id}", method=RequestMethod.DELETE)
 		public ResponseEntity<Void> delete(@PathVariable Integer id) {
 			service.delete(id);
 			return ResponseEntity.noContent().build();
 		}
-
+		
+		/*   //RETORNA VALORES DAS EMPRESAS RELACIONADAS A VAGA DE TRABALHO
+		@RequestMapping(value="/vgemp", method=RequestMethod.GET)
+		public ResponseEntity<List<VgtrabalhoDTO>> findVgtrabalhoEmpresas() {
+			List<Vgtrabalho> lista = service.findByEmpresa();
+			List<VgtrabalhoDTO> listaDTO = lista.stream().map(obj -> new VgtrabalhoDTO(obj)).collect(Collectors.toList()); 
+			return ResponseEntity.ok().body(listaDTO);
+		}
+ 		   */
+		
 		//LISTAR TODAS
 		@RequestMapping(method=RequestMethod.GET)
 		public ResponseEntity<List<VgtrabalhoDTO>> findAll() {

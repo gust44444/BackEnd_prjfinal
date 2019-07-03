@@ -15,6 +15,7 @@ public interface VgtrabalhoRepository extends JpaRepository<Vgtrabalho, Integer>
 	
 	@Transactional(readOnly=false)
 	@Query("SELECT obj FROM Vgtrabalho obj WHERE obj.empresa.id = :empresaId ORDER BY obj.id")
+	//@Query("SELECT obj FROM Vgtrabalho obj WHERE obj.empresa.id = :empresaId ORDER BY obj.id")
 	public List<Vgtrabalho> findVgtrabalhoEmpresas(@Param("empresaId") Integer empresa_id);
 	
 	@Transactional(readOnly=true)
