@@ -1,6 +1,7 @@
 package br.unisul.procurasefunc.resources;
 
 import java.net.URI;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.util.StringUtils;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import br.unisul.procurasefunc.domain.Vgtrabalho;
@@ -65,12 +67,35 @@ public class VgtrabalhoResource {
 			return ResponseEntity.ok().body(listaDTO);
 		}
  		   */
+		//LISTAR TODAS
+		@RequestMapping(value="/busca", method=RequestMethod.GET)
+		public ResponseEntity<List<VgtrabalhoDTO>> findAll(@RequestParam(required = false) String nome) {
+			List<Vgtrabalho> lista;
+			if (StringUtils.hasText(nome)) {
+				lista = service.findPorNome(nome);
+			} else {
+				lista = service.findAll();
+			}
+			List<VgtrabalhoDTO> listaDTO = lista.stream().map(vgt -> new VgtrabalhoDTO(vgt)).collect(Collectors.toList());
+			return ResponseEntity.ok().body(listaDTO);
+		}
 		
 		//LISTAR TODAS
-		@RequestMapping(method=RequestMethod.GET)
+		/* @RequestMapping(method=RequestMethod.GET)
 		public ResponseEntity<List<VgtrabalhoDTO>> findAll() {
 			List<Vgtrabalho> lista = service.findAll();
 			List<VgtrabalhoDTO> listaDTO = lista.stream().map(obj -> new VgtrabalhoDTO(obj)).collect(Collectors.toList()); 
+			return ResponseEntity.ok().body(listaDTO);
+		}*/
+		
+		@RequestMapping(method=RequestMethod.GET)
+		public ResponseEntity<List<VgtrabalhoDTO>> findAll() {
+			List<Vgtrabalho> lista = service.findAll();
+
+			List<VgtrabalhoDTO> listaDTO = new ArrayList<VgtrabalhoDTO>();
+			for (Vgtrabalho v : lista) {
+				listaDTO.add(new VgtrabalhoDTO(v));
+			}
 			return ResponseEntity.ok().body(listaDTO);
 		}
 		

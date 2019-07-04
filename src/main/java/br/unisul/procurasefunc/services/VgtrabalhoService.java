@@ -66,5 +66,9 @@ public class VgtrabalhoService {
 		List<Vgtrabalho> list = rep.findLikeNomedcargo(nome);
 		return list;
 	}
+	
+	public List<Vgtrabalho> findPorNome(String nome) {
+		return rep.findPorNome(nome);
+	}
 
 }
